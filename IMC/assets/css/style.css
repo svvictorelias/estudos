@@ -62,4 +62,8 @@ table{
 th{
   text-align: left;
 }
+#resultado{
+  padding: 10px;
+  font-weight: 700;
+}
 
