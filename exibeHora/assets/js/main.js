@@ -1,4 +1,4 @@
-function exibeHora(){
+function exibeHoraCase(){
     const h2 = document.querySelector('#hora')
     const data = new Date()
     console.log(data.getDay())
@@ -67,10 +67,17 @@ function exibeHora(){
         dia = 'Sábado'
         break
     }
-    function zeroAEsquerda(num){
-        return num>=10? num : `0${num}`
-    }
     const dataFormatada = (`${dia}, ${data.getDate()} de ${mes} de ${data.getFullYear()} ${zeroAEsquerda(data.getHours())}:${zeroAEsquerda(data.getMinutes())}`)
     h2.innerHTML = dataFormatada
 }
-exibeHora()
+
+function zeroAEsquerda(num){
+    return num>=10? num : `0${num}`
+}
+function exibeHoraDoc(){
+    const h2Doc = document.querySelector('#horaDoc')
+    const dataDoc = new Date()
+    h2Doc.innerHTML = dataDoc.toLocaleDateString('pt-BR', { dateStyle: 'full'}) + ' ' +`${dataDoc.getHours()}:${zeroAEsquerda(dataDoc.getMinutes())}`
+}
+exibeHoraCase()
+exibeHoraDoc()
