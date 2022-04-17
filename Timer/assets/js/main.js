@@ -1,7 +1,7 @@
 const clock = document.querySelector('#clock')
-const iniciar = document.querySelector('#iniciar')
-const pausar = document.querySelector('#pausar')
-const zerar = document.querySelector('#zerar')
+const iniciar = document.querySelector('.iniciar')
+const pausar = document.querySelector('.pausar')
+const zerar = document.querySelector('.zerar')
 pausar.disabled = true
 zerar.disabled = true
 
@@ -9,15 +9,18 @@ let segundos = 0
 let minutos = 0
 let horas = 0
 
-iniciar.addEventListener('click', function(e){
-    iniciaRelogio()
-})
-pausar.addEventListener('click', function(e){
-    pausaRelogio()
-    
-})
-zerar.addEventListener('click', function(e){
-    zeraRelogio()
+document.addEventListener('click', function(e){
+    const el = e.target
+
+    if(el.classList.contains('iniciar')){
+        iniciaRelogio()
+    }
+    if(el.classList.contains('pausar')){
+        pausaRelogio()
+    }
+    if(el.classList.contains('zerar')){
+        zeraRelogio()
+    }
 })
 
 function iniciaRelogio(){
