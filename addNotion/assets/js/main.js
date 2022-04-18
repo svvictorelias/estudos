@@ -13,6 +13,7 @@ function criaTarefa(){
         li.innerHTML = textoFormatado
         ol.appendChild(li)
         criaBotaoApagar()
+        criaBotaoEditar()
     }
     inputTexto.value = ''
     inputTexto.focus()
@@ -25,6 +26,19 @@ function criaBotaoApagar(){
     li.appendChild(botaoApagar)
 }
 
+function criaBotaoEditar(){
+    botaoEditar = document.createElement('button')
+    botaoEditar.innerHTML = 'Editar'
+    botaoEditar.setAttribute('class', 'editarTarefa')
+    li.appendChild(botaoEditar)
+}
+
+document.addEventListener('click', function(e){
+    const elemento = e.target
+    if(elemento.classList.contains('editarTarefa')){
+        console.log('funcinando')
+    }
+})
 document.addEventListener('click', function(e){
     const elemento = e.target
     if(elemento.classList.contains('apagar')){
