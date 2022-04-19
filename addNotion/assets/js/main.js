@@ -85,10 +85,15 @@ document.addEventListener('click', function(e){
     document.addEventListener('click', function(e){
     const elemento = e.target
     if(elemento.classList.contains('btnEdit')){
-        const editText = document.querySelector('.editInput')
-        editando = false
-        span.innerHTML = editText.value
-        document.querySelector('.btnEdit').remove()
-        editText.remove()  
+        const editTextInput = document.querySelector('.editInput')
+        const editText = (editTextInput.value).trim()
+        if((editText).trim() !== ''){
+            editando = false
+            span.innerHTML = editText
+            document.querySelector('.btnEdit').remove()
+            editTextInput.remove()  
+        }else{
+            alert('Digite algo valido')
+        }
     }
 })
