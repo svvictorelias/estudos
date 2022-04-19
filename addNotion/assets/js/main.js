@@ -2,6 +2,9 @@ const btnAddTarefa = document.querySelector('.btnAddTarefa')
 const inputTexto = document.querySelector('#textoTarefa')
 const ol = document.querySelector('ol')
 
+//variavel de controle para poder editar apenas uma nota por vez
+var editando = false
+
 btnAddTarefa.addEventListener('click', function(e){
     criaTarefa()
 })
@@ -57,16 +60,21 @@ document.addEventListener('click', function(e){
 
 
 //#########   A partir daqui    ############################
+
 document.addEventListener('click', function(e){
     const elemento = e.target
     if(elemento.classList.contains('editarTarefa')){
-        x = elemento.parentElement.querySelector('span')
-        const novoTextoInput = document.querySelector('.editInput')
-        criaInputEditar()
-        console.log(x)
-        btn = elemento.parentElement.querySelector('.editarTarefa')
-        btn.disabled = true
-        
+        if(editando == false){
+            x = elemento.parentElement.querySelector('span')
+            const novoTextoInput = document.querySelector('.editInput')
+            criaInputEditar()
+            console.log(x)
+            btn = elemento.parentElement.querySelector('.editarTarefa')
+            console.log(editando)
+            editando = true
+        }else{
+            alert('termine de editar')
+        }  
     }
 })
 
