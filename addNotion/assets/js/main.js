@@ -2,7 +2,7 @@ const btnAddTarefa = document.querySelector('.btnAddTarefa')
 const inputTexto = document.querySelector('#textoTarefa')
 const ol = document.querySelector('ol')
 
-//variavel de controle para poder editar apenas uma nota por vez
+//controlador de estado editando ou não
 var editando = false
 
 btnAddTarefa.addEventListener('click', function(e){
@@ -35,47 +35,60 @@ function criaBotaoApagar(){
 
 function criaBotaoEditar(){
     botaoEditar = document.createElement('button')
+    divEditar = document.createElement('div')
     botaoEditar.innerHTML = 'Editar'
     botaoEditar.setAttribute('class', 'editarTarefa')
     li.appendChild(botaoEditar)
+    li.appendChild(divEditar)
 }
 
-function criaInputEditar(){
+function criaInputEditar(classePai){
     inputEdit = document.createElement('input')
-    btnEdit = document.createElement('button')
     inputEdit.setAttribute('class', 'editInput')
-    btnEdit.setAttribute('class', 'btnEdit')
+    classePai.appendChild(inputEdit)
+    
+    btnEdit = document.createElement('button')
     btnEdit.innerHTML = 'Salvar'
-    li.appendChild(inputEdit)
-    li.appendChild(btnEdit)
+    btnEdit.setAttribute('class', 'btnEdit')
+    classePai.appendChild(btnEdit)
 }
 
 document.addEventListener('click', function(e){
     const elemento = e.target
     if(elemento.classList.contains('apagar')){
-        elemento.parentElement.remove()
+        if(editando==false){
+            elemento.parentElement.remove()
+        }else{
+            alert('Por Favor termine de editar')
+        }
     }
 })
 
-
-
 //#########   A partir daqui    ############################
-
 document.addEventListener('click', function(e){
     const elemento = e.target
     if(elemento.classList.contains('editarTarefa')){
-        if(editando == false){
-            x = elemento.parentElement.querySelector('span')
-            const novoTextoInput = document.querySelector('.editInput')
-            criaInputEditar()
-            console.log(x)
-            btn = elemento.parentElement.querySelector('.editarTarefa')
-            console.log(editando)
+        if(editando==false){ 
+            div = elemento.parentElement.querySelector('div')  
+            span = elemento.parentElement.querySelector('span') 
+            
+            criaInputEditar(div)
             editando = true
         }else{
-            alert('termine de editar')
-        }  
+            alert('Por Favor termine de editar')
+        }
     }
 })
 
+//Ao clicar no botão Salvar(edição) ele pega o input e manda pro span do  
 
+    document.addEventListener('click', function(e){
+    const elemento = e.target
+    if(elemento.classList.contains('btnEdit')){
+        const editText = document.querySelector('.editInput')
+        editando = false
+        span.innerHTML = editText.value
+        document.querySelector('.btnEdit').remove()
+        editText.remove()  
+    }
+})

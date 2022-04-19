@@ -9,7 +9,11 @@
   box-sizing: border-box;
   outline: 0;
 }
-
+div{
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 body {
   margin: 0;
   padding: 0;
