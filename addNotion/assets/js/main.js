@@ -10,8 +10,12 @@ function criaTarefa(){
     const textoFormatado = (inputTexto.value).trim()
     if((textoFormatado).trim() !== ''){
         li = document.createElement('li')
-        li.innerHTML = textoFormatado
+        spanTexto = document.createElement('span')
+
+        spanTexto.innerHTML = textoFormatado
+        li.appendChild(spanTexto)
         ol.appendChild(li)
+
         criaBotaoApagar()
         criaBotaoEditar()
     }
@@ -33,6 +37,15 @@ function criaBotaoEditar(){
     li.appendChild(botaoEditar)
 }
 
+function criaInputEditar(){
+    inputEdit = document.createElement('input')
+    btnEdit = document.createElement('button')
+    inputEdit.setAttribute('class', 'editInput')
+    btnEdit.setAttribute('class', 'btnEdit')
+    btnEdit.innerHTML = 'Salvar'
+    li.appendChild(inputEdit)
+    li.appendChild(btnEdit)
+}
 
 document.addEventListener('click', function(e){
     const elemento = e.target
@@ -42,15 +55,19 @@ document.addEventListener('click', function(e){
 })
 
 
+
 //#########   A partir daqui    ############################
 document.addEventListener('click', function(e){
     const elemento = e.target
     if(elemento.classList.contains('editarTarefa')){
-        editar()
+        x = elemento.parentElement.querySelector('span')
+        const novoTextoInput = document.querySelector('.editInput')
+        criaInputEditar()
+        console.log(x)
+        btn = elemento.parentElement.querySelector('.editarTarefa')
+        btn.disabled = true
+        
     }
 })
 
-function editar(){
-    const btn = document.querySelector('.editarTarefa')
-    console.log(btn.parentElement)
-}
+
