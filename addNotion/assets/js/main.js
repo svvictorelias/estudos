@@ -33,15 +33,24 @@ function criaBotaoEditar(){
     li.appendChild(botaoEditar)
 }
 
-document.addEventListener('click', function(e){
-    const elemento = e.target
-    if(elemento.classList.contains('editarTarefa')){
-        console.log('funcinando')
-    }
-})
+
 document.addEventListener('click', function(e){
     const elemento = e.target
     if(elemento.classList.contains('apagar')){
         elemento.parentElement.remove()
     }
 })
+
+
+//#########   A partir daqui    ############################
+document.addEventListener('click', function(e){
+    const elemento = e.target
+    if(elemento.classList.contains('editarTarefa')){
+        editar()
+    }
+})
+
+function editar(){
+    const btn = document.querySelector('.editarTarefa')
+    console.log(btn.parentElement)
+}
